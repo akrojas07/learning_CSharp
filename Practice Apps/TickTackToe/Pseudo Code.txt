@@ -1,0 +1,16 @@
+//Tick Tack Toe pseudo code
+
+// Step 1 - Create a global 3 x 3 array to hold the game 
+
+// Step 2 - Have two players 
+// Requirement for both players - be able to select grid coordinates for row and column
+
+// Step 3 - Validate grid coordinates 
+// Game should continue if player selected an int between 0 and 2.
+// If coordinate is not valid, reprompt them to enter in an int between 0 and 2.
+
+// Step 4 - Once coordinates have been validated, determine whether spot on the grid 
+// is available. 
+// If not available, prompt to enter a different set of coordinates 
+
+// Step 5 - Determine if there is a winner 

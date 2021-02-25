@@ -1,0 +1,158 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TickTackToe
+{
+    public class Program
+    {
+        public static int[,] TBoard = new int[3, 3];
+
+       /* public static void Print2DArray<T>(T[,] matrix)
+        {
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    Console.Write(matrix[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+        }
+        */
+        public static void Main(string[] args)
+
+        {
+            Console.WriteLine("   |  0  |  1  |  2  |");
+            Console.WriteLine("   |-----------------|");
+            Console.WriteLine(" 0 |     |     |     |");
+            Console.WriteLine("   |-----------------|");
+
+            Console.WriteLine(" 1 |     |     |     |");
+            Console.WriteLine("   |-----------------|");
+
+            Console.WriteLine(" 2 |     |     |     |");
+            Console.WriteLine("   |-----------------|");
+
+            int PlayerOneR;
+            int PlayerOneC;
+            int PlayerTwoR;
+            int PlayerTwoC;
+            bool boardEntryValid = false;
+            
+            do
+            {
+                //loop through player one and verify whether their entry is valid. If it is, add it to the TTT board
+                PlayerOneR = ValidCoordinates(1, "Row");
+                PlayerOneC = ValidCoordinates(1, "Column");
+                Console.WriteLine($"Coordinates selected: {PlayerOneR}, {PlayerOneC}");
+                boardEntryValid = BoardEntry(1, PlayerOneR, PlayerOneC);
+
+                //loop through player two and verify whether their entry is valid. If it is, add it to the TTT board 
+                PlayerTwoR = ValidCoordinates(2, "Row");
+                PlayerTwoC = ValidCoordinates(2, "Column");
+                Console.WriteLine($"Coordinates selected: {PlayerTwoR}, {PlayerTwoC}");
+                boardEntryValid = BoardEntry(2, PlayerTwoR, PlayerTwoC);
+                
+                
+                
+
+            } while (!boardEntryValid);
+
+            
+            //BoardEntry(1,PlayerOneR,PlayerOneC);
+
+            
+
+            //Console.WriteLine($"Coordinates selected: {PlayerTwoR}, {PlayerTwoC}");
+
+            //BoardEntry(2,PlayerTwoR, PlayerTwoC);
+
+            Console.ReadLine();
+        }
+        /* properties
+             need player 1 assigned to x (1) and player 2 assigned to o (2)
+              */
+
+
+
+        /* methods
+         prompt for grid coordinates
+         verify coordinates as ints and available
+         winner determination*/
+
+
+
+        public static int ValidCoordinates(int playerID, string selectionType) 
+        {
+            string pChoice = string.Empty;
+            int playerChoice;
+            
+            do
+            {
+                Console.WriteLine($"Player {playerID}, please select a {selectionType}:  ");
+                pChoice = Console.ReadLine();
+                
+                int.TryParse(pChoice, out playerChoice);
+
+                if (playerChoice != 0 && playerChoice != 1 && playerChoice != 2)
+                {
+                    Console.WriteLine("Your selection is invalid, please try again.\n");
+                    
+                }
+                else
+                {
+                    break;
+                }
+                
+            }
+            while (playerChoice != 0 && playerChoice != 1 && playerChoice != 2);
+            
+            return playerChoice; 
+
+            
+        }
+        
+
+
+        public static bool BoardEntry (int playerID,int validatedRow, int validatedColumn)
+        {
+            if (TBoard[validatedRow, validatedColumn] != 0)
+            {
+                Console.WriteLine($"Coordinates {validatedRow},{validatedColumn} already contain a value, please try again.\n");
+                //ValidCoordinates(playerID,"row");
+                return false;
+                //loop through the validation again
+            }
+            else
+            {
+                // if slot is empty, enter 1 or 2 
+                if (playerID == 1)
+                {
+                    TBoard[validatedRow, validatedColumn] = 1;
+                }
+                else
+                {
+                    TBoard[validatedRow, validatedColumn] = 2;
+                }
+                return true;
+            }
+
+        }
+
+
+
+    
+/*
+
+        public static int WinnerDet()
+        {
+            if () 
+            {
+                Console.WriteLine($"Player 1 Wins");
+            }
+        }*/
+    }
+}
