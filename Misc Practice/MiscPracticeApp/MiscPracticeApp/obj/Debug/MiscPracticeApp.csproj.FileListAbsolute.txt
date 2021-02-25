@@ -1,0 +1,6 @@
+C:\Users\Anakaren\Documents\CS Projects\Misc Practice\MiscPracticeApp\MiscPracticeApp\bin\Debug\MiscPracticeApp.exe.config
+C:\Users\Anakaren\Documents\CS Projects\Misc Practice\MiscPracticeApp\MiscPracticeApp\bin\Debug\MiscPracticeApp.exe
+C:\Users\Anakaren\Documents\CS Projects\Misc Practice\MiscPracticeApp\MiscPracticeApp\bin\Debug\MiscPracticeApp.pdb
+C:\Users\Anakaren\Documents\CS Projects\Misc Practice\MiscPracticeApp\MiscPracticeApp\obj\Debug\MiscPracticeApp.csprojAssemblyReference.cache
+C:\Users\Anakaren\Documents\CS Projects\Misc Practice\MiscPracticeApp\MiscPracticeApp\obj\Debug\MiscPracticeApp.exe
+C:\Users\Anakaren\Documents\CS Projects\Misc Practice\MiscPracticeApp\MiscPracticeApp\obj\Debug\MiscPracticeApp.pdb
