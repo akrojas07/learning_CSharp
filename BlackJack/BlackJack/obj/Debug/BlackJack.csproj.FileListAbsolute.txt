@@ -1,0 +1,6 @@
+C:\Users\Anakaren\Documents\CS Projects\BlackJack\BlackJack\bin\Debug\BlackJack.exe.config
+C:\Users\Anakaren\Documents\CS Projects\BlackJack\BlackJack\bin\Debug\BlackJack.exe
+C:\Users\Anakaren\Documents\CS Projects\BlackJack\BlackJack\bin\Debug\BlackJack.pdb
+C:\Users\Anakaren\Documents\CS Projects\BlackJack\BlackJack\obj\Debug\BlackJack.csprojAssemblyReference.cache
+C:\Users\Anakaren\Documents\CS Projects\BlackJack\BlackJack\obj\Debug\BlackJack.exe
+C:\Users\Anakaren\Documents\CS Projects\BlackJack\BlackJack\obj\Debug\BlackJack.pdb

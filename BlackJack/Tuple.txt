@@ -1,0 +1,190 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BlackJack
+{
+    public class Program
+    {
+        public static int[] deck = new int[52] { 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 };
+
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("Welcome to blackjack");
+            Console.ReadLine();
+
+            int playerOneTotal = FirstDeal(1);
+
+            Console.WriteLine($"Total {playerOneTotal}\n");
+
+            int playerTwoTotal = FirstDeal(2);
+
+            Console.WriteLine($"Total {playerTwoTotal}\n");
+
+            string p1Choice = string.Empty;
+            string p2Choice = string.Empty; 
+
+            do
+            {
+                if (p1Choice.ToUpper() != "STAY")
+                {
+                    var playerOneChoiceAndTotal = HitOrStay(1, playerOneTotal);
+                    playerOneTotal = playerOneChoiceAndTotal.total;
+                    p1Choice = playerOneChoiceAndTotal.choice;
+                }
+
+                if (playerOneTotal > 21)
+                {
+                    Console.WriteLine("Bust");
+
+                    break;
+                }
+
+                if (p2Choice.ToUpper() != "STAY")
+                {
+                    var playerTwoChoiceAndTotal = HitOrStay(2, playerTwoTotal);
+                    playerTwoTotal = playerTwoChoiceAndTotal.total;
+                    p2Choice = playerTwoChoiceAndTotal.choice;
+                }
+
+                if (playerTwoTotal > 21)
+                {
+                    Console.WriteLine("Bust");
+
+                    break;
+                }
+            }
+            while ((playerOneTotal <= 21 && p1Choice.ToUpper() !="STAY") || (playerTwoTotal <= 21 && p2Choice.ToUpper() != "STAY"));
+
+            
+            //announce the winner
+            if (playerOneTotal > 21|| (playerTwoTotal <21 && playerTwoTotal>playerOneTotal))
+            {
+                Console.WriteLine("Player 2 Wins");
+            }
+
+            else if (playerTwoTotal> 21 ||(playerOneTotal < 21 && playerOneTotal>playerTwoTotal))
+            {
+                Console.WriteLine("Player 1 wins");
+            }
+
+            
+          Console.ReadLine();
+        }
+
+        /// <summary>
+        /// Deal method that deals a card of value 1 - 10.
+        /// </summary>
+        /// <returns>Returns a value between 1 - 10</returns>
+        public static int Deal()
+        {
+            var deckIndex = new Random();
+
+            var index = 0;
+
+            do
+            {
+                index = deckIndex.Next(0, 51);
+
+            } while (deck[index] == 0);
+
+            var tmp = deck[index];
+
+            //set it to 0 to indicate already dealt card
+            deck[index] = 0;
+
+            return tmp;
+        }
+
+        public static int FirstDeal(int playerId)
+        {
+            int p = 0;
+            int playerTotal = 0;
+
+            //deal two cards to first player then sum, if less than 21, move on to player 2 
+            do
+            {
+                int deckDeal = Deal();
+
+                Console.WriteLine($"Player {playerId} - Card dealt: ");
+
+                playerTotal += deckDeal;
+
+                Console.WriteLine($"{deckDeal}");
+
+                p++;
+            }
+            while (p < 2);
+
+            return playerTotal;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="playerId"></param>
+        /// <param name="playerTotal"></param>
+        /// <returns>
+        /// player ID and their hand total
+        /// </returns>
+        public static (string choice, int total) HitOrStay(int playerId, int playerTotal)
+        {
+            // variable to store their selection 
+            string pChoice = null;
+          
+            //condition: if player x's hand is less than or equal to 21, then 
+            if (playerTotal <= 21)
+            {
+                /* Prompt player x to HIT or STAY
+                 * store their entry in pChoice 
+                 *  condition 1: if pChoice is HIT, call the DEAL method and display what
+                 *  they were dealt to the console 
+                 *  then add what they were dealt to their total and display on the console
+                 *  condition 2: if pChoice is STAY, show their total and end the loop
+                 *  condition 3: if their choice isn't HIT or STAY, reprompt them for their entry 
+                 * while player x's choice isn't HIT or STAY */
+                do
+                {
+                    Console.WriteLine($"Player {playerId} - Hit or Stay");
+
+                    pChoice = Console.ReadLine();
+
+                    if (pChoice.ToUpper() == "STAY")
+                    {
+                        Console.WriteLine($"Player {playerId} total: {playerTotal}");
+                        break;
+                    }
+                    else if (pChoice.ToUpper() == "HIT")
+                    {
+                        int deckDealp1 = Deal();
+
+                        Console.WriteLine($"Player {playerId} - Card dealt: ");
+
+                        playerTotal += deckDealp1;
+
+                        Console.WriteLine(deckDealp1);
+
+                        Console.WriteLine($"Player {playerId} total: {playerTotal}\n");
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("Invalid input, please select Hit or Stay\n");
+
+                    }
+
+                } while (pChoice.ToUpper() != "HIT" && pChoice.ToUpper() != "STAY");
+
+                return (choice: pChoice, total: playerTotal);
+            }
+
+            // condition: if player x's hand isn't less than or equal to 21, then return the player total
+            else
+            {
+                return (choice: pChoice, total: playerTotal);
+            }
+        }
+    }
+}
